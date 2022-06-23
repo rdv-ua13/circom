@@ -1,0 +1,130 @@
+.header {
+	z-index: 2;
+	position: relative;
+	min-width: 320px;
+	width: 100%;
+	padding-top: 23px;
+	padding-bottom: 23px;
+	background-color: var(--gray-color);
+
+	/*&__container {
+		position: static;
+		display: flex;
+		flex-wrap: wrap;
+	}*/
+}
+
+.navbar {
+	justify-content: space-between;
+	padding: 0;
+
+	&__brand {
+		display: flex;
+		align-items: center;
+		margin-right: 30px;
+		padding: 0;
+	}
+	&__logo {
+		min-width: 200px;
+		width: 200px;
+		min-height: 54px;
+		height: 54px;
+	}
+	&__collapse {
+		display: flex;
+		align-items: center;
+		margin-right: 30px;
+	}
+	&__nav {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	&__nav {
+		display: flex;
+		flex: 1;
+		justify-content: center;
+		align-items: center;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	&__nav-item:not(:last-child) {
+		margin-right: 24px;
+	}
+	&__nav-link {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 4px;
+		color: var(--blue-color);
+		line-height: 1;
+	}
+	&__nav-link-icon {
+		margin-right: 6px;
+	}
+	&__contacts {
+		display: grid;
+		grid-template-rows: repeat(2, auto);
+		grid-template-columns: 1fr auto;
+	}
+	&__contacts a {
+		display: flex;
+	}
+	&__contacts-tel,
+	&__contacts-email {
+		margin-right: 20px;
+	}
+	&__contacts-tel {
+		grid-row: 1 / 2;
+		grid-column: 1 / 2;
+	}
+	&__contacts-tel a {
+		color: var(--blue-color);
+		font-size: 18px;
+	}
+	&__contacts-email {
+		grid-row: 2 / 3;
+		grid-column: 1 / 2;
+	}
+	&__contacts-email a {
+		color: var(--gray-text-color);
+	}
+	&__contacts-wa {
+		grid-row: 1 / 3;
+		grid-column: 2 / 3;
+		display: flex;
+		align-items: center;
+	}
+	&__contacts-wa,
+	&__contacts-wa a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&__contacts-wa a {
+		min-width: 48px;
+		width: 48px;
+		min-height: 48px;
+		height: 48px;
+		padding: 12px;
+		border-radius: 50%;
+		background-color: var(--blue-color);
+	}
+	&__contacts-wa .icon {
+		stroke-width: 1.5px;
+	}
+	& .dropdown-toggle::after {
+		content: none;
+	}
+}
+
+@media (min-width: 992px) {
+	.navbar-expand-lg .navbar__nav .navbar__nav-link {
+		padding-right: 4px;
+		padding-left: 4px;
+	}
+}

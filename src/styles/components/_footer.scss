@@ -1,0 +1,107 @@
+.footer {
+	position: relative;
+	flex: 0 0 auto;
+	min-width: 320px;
+	padding-top: 40px;
+	padding-bottom: 15px;
+	border-top: 1px solid var(--blue-color);
+	background-color: var(--white-color);
+
+	&__item:first-of-type,
+	&__item:last-of-type {
+		min-width: 310px;
+		width: 310px;
+	}
+	&__item:not(:first-of-type):not(:last-of-type) {
+		flex: 1;
+	}
+	&__item:not(:last-of-type) {
+		margin-right: 120px;
+	}
+	&__brand {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	&__logo {
+		min-width: 280px;
+		width: 280px;
+		min-height: 80px;
+		height: 80px;
+	}
+	&__rights,
+	&__rights a {
+		color: var(--gray-text-color);
+		font-size: 14px;
+	}
+	&__rights p {
+		margin: 0;
+	}
+	&__rights p:not(:last-child) {
+		margin-bottom: 12px;
+	}
+	&__menu ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	&__menu a {
+		display: block;
+		line-height: 32px;
+	}
+	&__contacts:not(:last-child) {
+		margin-bottom: 8px;
+	}
+	&__contacts-item {
+	}
+}
+
+.subscribe {
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	border-radius: 26px;
+	background-color: var(--gray-color);
+
+	&__label {
+		width: 100%;
+		margin: 0;
+		padding: 6px 16px;
+	}
+	&__field {
+		display: flex;
+		width: 100%;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background-color: transparent;
+		font-size: 14px;
+		line-height: 24px;
+	}
+	&__field::placeholder {
+		color: var(--black-color);
+	}
+	&__button,
+	&__button-view {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&__button {
+		padding: 0;
+		border: 0;
+		appearance: none;
+	}
+	&__button-view {
+		padding: 6px;
+		border-radius: 50%;
+		background-color: var(--blue-color);
+	}
+	&__button-icon {
+		min-width: 24px;
+		width: 24px;
+		min-height: 24px;
+		height: 24px;
+		stroke-width: 1.5px;
+		stroke: var(--white-color);
+	}
+}

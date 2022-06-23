@@ -1,0 +1,41 @@
+@font-face {
+	font-family: "Brutal", sans-serif;
+	src: local("/build/fonts/BrutalLight"),
+	url("/build/fonts/BrutalLight.ttf") format("truetype");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Brutal", sans-serif;
+	src: local("/build/fonts/BrutalRegular"),
+	url("/build/fonts/BrutalRegular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Brutal", sans-serif;
+	src: local("/build/fonts/BrutalMedium"),
+	url("/build/fonts/BrutalMedium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Brutal", sans-serif;
+	src: local("/build/fonts/BrutalBold"),
+	url("/build/fonts/BrutalBold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Stapel", sans-serif;
+	src: local("/build/fonts/Stapel_Medium"),
+	url("/build/fonts/Stapel_Medium.otf") format("opentype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
