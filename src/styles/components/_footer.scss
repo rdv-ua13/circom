@@ -7,37 +7,23 @@
 	border-top: 1px solid var(--blue-color);
 	background-color: var(--white-color);
 
-	&__item:first-of-type,
-	&__item:last-of-type {
-		min-width: 310px;
-		width: 310px;
-	}
-	&__item:not(:first-of-type):not(:last-of-type) {
+	&__item:nth-child(2) {
 		flex: 1;
 	}
-	&__item:not(:last-of-type) {
-		margin-right: 120px;
-	}
-	&__brand {
-		padding-right: 15px;
-		padding-left: 15px;
-	}
 	&__logo {
-		min-width: 280px;
-		width: 280px;
-		min-height: 80px;
-		height: 80px;
+		display: block;
 	}
 	&__rights,
 	&__rights a {
-		color: var(--gray-text-color);
+		color: var(--gray-color);
 		font-size: 14px;
 	}
 	&__rights p {
 		margin: 0;
 	}
-	&__rights p:not(:last-child) {
-		margin-bottom: 12px;
+	&__menu {
+		display: flex;
+		justify-content: space-between;
 	}
 	&__menu ul {
 		margin: 0;
@@ -48,19 +34,169 @@
 		display: block;
 		line-height: 32px;
 	}
-	&__contacts:not(:last-child) {
-		margin-bottom: 8px;
+}
+
+@media (max-width: 575.98px) {
+	.footer {
+		&__item:nth-child(1) {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		&__logo {
+			margin-bottom: 20px;
+		}
+		&__contacts:not(:last-child) {
+			margin-bottom: 8px;
+		}
+		&__rights {
+			min-width: 100%;
+			width: 100%;
+			font-size: 12px;
+		}
 	}
-	&__contacts-item {
+}
+@media (max-width: 767.98px) {
+	.footer {
+		&__item {
+			min-width: 100%;
+			width: 100%;
+		}
+		&__item:not(:nth-child(1)) {
+			margin-bottom: 20px;
+		}
+		&__logo img {
+			min-width: 180px;
+			width: 180px;
+			min-height: 48px;
+			height: 48px;
+		}
+		&__rights p:not(:last-child) {
+			margin-bottom: 5px;
+		}
+	}
+}
+@media (max-width: 1199.98px) {
+	.footer {
+		&__item:nth-child(1) {
+			order: 3;
+			display: flex;
+			align-items: center;
+			min-width: 100%;
+			width: 100%;
+		}
+		&__item:nth-child(2) {
+			order: 1;
+		}
+		&__item:nth-child(3) {
+			order: 2;
+		}
+	}
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+	.footer {
+		&__item:nth-child(1) {
+			justify-content: space-between;
+		}
+		&__item:nth-child(3) {
+			display: flex;
+			justify-content: space-between;
+		}
+		&__logo {
+			margin-right: 20px;
+		}
+		&__contacts:not(:last-child) {
+			margin-right: 20px;
+		}
+	}
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.footer {
+		&__item:nth-child(2) {
+			margin-right: 50px;
+		}
+		&__item:nth-child(3) {
+			min-width: 280px;
+			width: 280px;
+		}
+	}
+}
+@media (min-width: 768px) and (max-width: 1199.98px) {
+	.footer {
+		&__item:nth-child(1) {
+			justify-content: center;
+		}
+		&__item:not(:nth-child(1)) {
+			margin-bottom: 30px;
+		}
+		&__logo {
+			margin-right: 50px;
+		}
+	}
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.footer {
+		&__item:nth-child(2) {
+			margin-right: 150px;
+		}
+		&__item:nth-child(3) {
+			min-width: 310px;
+			width: 310px;
+		}
+	}
+}
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+	.footer {
+		&__item:not(:last-of-type) {
+			margin-right: 60px;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.footer {
+		&__logo img {
+			min-width: 280px;
+			width: 280px;
+			min-height: 75px;
+			height: 75px;
+		}
+		&__rights p:not(:last-child) {
+			margin-bottom: 12px;
+		}
+		&__contacts:not(:last-child) {
+			margin-bottom: 8px;
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.footer {
+		&__item:first-of-type,
+		&__item:last-of-type {
+			min-width: 310px;
+			width: 310px;
+		}
+		&__logo {
+			margin-bottom: 24px;
+			padding-right: 15px;
+			padding-left: 15px;
+		}
+	}
+}
+@media (min-width: 1400px) {
+	.footer {
+		&__item:not(:last-of-type) {
+			margin-right: 120px;
+		}
 	}
 }
 
 .subscribe {
 	display: flex;
 	align-items: center;
+	min-height: 52px;
+	height: 52px;
 	padding: 8px;
 	border-radius: 26px;
-	background-color: var(--gray-color);
+	background-color: var(--lightgray-color);
 
 	&__label {
 		width: 100%;
@@ -74,34 +210,120 @@
 		border: 0;
 		border-radius: 0;
 		background-color: transparent;
-		font-size: 14px;
+		font-size: 16px;
 		line-height: 24px;
 	}
 	&__field::placeholder {
 		color: var(--black-color);
+		font-size: 14px;
 	}
-	&__button,
-	&__button-view {
+}
+
+.pre-footer {
+	&__contacts {
 		display: flex;
-		justify-content: center;
-		align-items: center;
+		width: 100%;
+		height: 100%;
 	}
-	&__button {
-		padding: 0;
-		border: 0;
-		appearance: none;
+	&__contacts-value p {
+		margin: 0;
 	}
-	&__button-view {
-		padding: 6px;
-		border-radius: 50%;
-		background-color: var(--blue-color);
+}
+@media (max-width: 767.98px) {
+	.pre-footer {
+		&__contacts {
+			flex-direction: column;
+		}
+		&__contacts-item:not(:last-child) {
+			margin-bottom: 20px;
+		}
+		&__contacts-title,
+		&__contacts-value {
+			line-height: 24px;
+		}
+		&__contacts-title {
+			font-size: 18px;
+		}
+		&__contacts-value {
+			font-size: 16px;
+		}
 	}
-	&__button-icon {
-		min-width: 24px;
-		width: 24px;
-		min-height: 24px;
-		height: 24px;
-		stroke-width: 1.5px;
-		stroke: var(--white-color);
+}
+@media (max-width: 991.98px) {
+	.pre-footer {
+		&__request .file-upload {
+			margin-bottom: 15px;
+		}
+	}
+}
+@media (max-width: 1199.98px) {
+	.pre-footer {
+		& .col:nth-child(1) {
+			order: 1;
+		}
+		& .col:nth-child(2) {
+			order: 3;
+		}
+		& .col:nth-child(3) {
+			order: 2;
+		}
+	}
+}
+@media (min-width: 768px) and (max-width: 1199.98px) {
+	.pre-footer {
+		&__contacts {
+			justify-content: space-between;
+		}
+		&__request .file-upload {
+			flex: 1;
+			margin-right: 15px;
+		}
+	}
+}
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+	.pre-footer {
+		&__contacts {
+			padding-left: 80px;
+		}
+		&__request .file-upload {
+			margin-bottom: 15px;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.pre-footer {
+		&__contacts-item:not(:last-child) {
+			margin-bottom: 30px;
+		}
+		&__contacts-title,
+		&__contacts-value {
+			line-height: 27px;
+		}
+		&__contacts-title {
+			font-size: 21px;
+		}
+		&__contacts-value {
+			font-size: 18px;
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.pre-footer {
+		&__contacts {
+			flex-direction: column;
+			padding-top: 100px;
+			padding-right: 20px;
+		}
+	}
+}
+@media (min-width: 1400px) {
+	.pre-footer {
+		&__contacts {
+			padding-left: 100px;
+		}
+		&__request .file-upload {
+			flex: 1;
+			margin-right: 15px;
+		}
 	}
 }

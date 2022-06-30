@@ -1,130 +1,467 @@
 .header {
 	z-index: 2;
-	position: relative;
+	position: sticky;
+	top: 0;
 	min-width: 320px;
 	width: 100%;
-	padding-top: 23px;
-	padding-bottom: 23px;
-	background-color: var(--gray-color);
-
-	/*&__container {
-		position: static;
-		display: flex;
-		flex-wrap: wrap;
-	}*/
+	background-color: var(--lightgray-color);
 }
 
 .navbar {
 	justify-content: space-between;
-	padding: 0;
+	padding: 23px 0;
 
-	&__brand {
-		display: flex;
-		align-items: center;
-		margin-right: 30px;
-		padding: 0;
-	}
-	&__logo {
-		min-width: 200px;
-		width: 200px;
-		min-height: 54px;
-		height: 54px;
-	}
+	&__logo,
 	&__collapse {
 		display: flex;
 		align-items: center;
-		margin-right: 30px;
-	}
-	&__nav {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin: 0;
-		padding: 0;
-		list-style: none;
 	}
 	&__nav {
 		display: flex;
 		flex: 1;
-		justify-content: center;
 		align-items: center;
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
-	&__nav-item:not(:last-child) {
-		margin-right: 24px;
+	&__nav-item {
+		position: relative;
+		margin-bottom: -23px;
+		padding-bottom: 23px;
+	}
+	&__nav-item.active::before {
+		content: "";
+		z-index: 1;
+		position: absolute;
+		right: 0;
+		bottom: -2px;
+		left: 0;
+		min-height: 3px;
+		height: 3px;
+		border-radius: 3px;
+		background-color: var(--blue-color);
 	}
 	&__nav-link {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding: 4px;
 		color: var(--blue-color);
-		line-height: 1;
+		line-height: 24px;
+		white-space: nowrap;
 	}
-	&__nav-link-icon {
-		margin-right: 6px;
+	&__nav-link .icon {
+		margin-right: 5px;
 	}
-	&__contacts {
-		display: grid;
-		grid-template-rows: repeat(2, auto);
-		grid-template-columns: 1fr auto;
+	&__nav-link .icon-stroke {
+		stroke-width: 1.5px;
+		stroke: var(--blue-color);
 	}
 	&__contacts a {
 		display: flex;
 	}
-	&__contacts-tel,
-	&__contacts-email {
-		margin-right: 20px;
-	}
-	&__contacts-tel {
-		grid-row: 1 / 2;
-		grid-column: 1 / 2;
-	}
 	&__contacts-tel a {
 		color: var(--blue-color);
-		font-size: 18px;
-	}
-	&__contacts-email {
-		grid-row: 2 / 3;
-		grid-column: 1 / 2;
 	}
 	&__contacts-email a {
-		color: var(--gray-text-color);
+		color: var(--gray-color);
 	}
 	&__contacts-wa {
-		grid-row: 1 / 3;
-		grid-column: 2 / 3;
-		display: flex;
-		align-items: center;
-	}
-	&__contacts-wa,
-	&__contacts-wa a {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
-	&__contacts-wa a {
-		min-width: 48px;
-		width: 48px;
-		min-height: 48px;
-		height: 48px;
-		padding: 12px;
-		border-radius: 50%;
+	&__contacts-wa .btn {
 		background-color: var(--blue-color);
 	}
-	&__contacts-wa .icon {
-		stroke-width: 1.5px;
-	}
-	& .dropdown-toggle::after {
-		content: none;
+	&__contacts-wa .btn:not(.btn-small) {
+		border-radius: 50%;
 	}
 }
+.navbar-panel {
+	position: relative;
+	display: none;
+	padding: 40px 0 23px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	background-color: var(--lightgray-color);
 
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		min-height: 1px;
+		height: 1px;
+		background-color: var(--blue-color);
+		transition: 0.15s ease-in-out;
+	}
+	&__container {
+		display: flex;
+	}
+	&__col:last-of-type {
+		width: 100%;
+	}
+	&__dropdown-item:not(:last-of-type) {
+		margin-bottom: 5px;
+	}
+	&__dropdown-link {
+		display: inline-flex;
+		padding: 14px 20px;
+		border-radius: 26px;
+		background-color: transparent;
+		color: var(--black-color);
+		font-size: 18px;
+		line-height: 24px;
+	}
+	&__dropdown-link:hover {
+		background-color: var(--blue-color);
+		color: var(--white-color);
+	}
+	&__dropdown-link .text-content-mr {
+		margin-right: 5px;
+	}
+	&__dropdown-link .text-content-ml {
+		margin-left: 5px;
+	}
+	&__dropdown-link .icon {
+		stroke-width: 1.5px;
+	}
+	&__dropdown-link .icon-stroke {
+		stroke: var(--black-color);
+	}
+	&__dropdown-link:hover .icon-stroke {
+		stroke: var(--white-color);
+	}
+	&__dropdown-submenu:not(.active) {
+		display: none;
+	}
+	&__dropdown-subitem {
+		display: block;
+		padding-top: 12px;
+		padding-bottom: 12px;
+		line-height: 24px;
+	}
+}
+@media (max-width: 575.98px) {
+	.navbar {
+		&__logo img {
+			min-width: 120px;
+			width: 120px;
+			min-height: 36px;
+			height: 36px;
+		}
+		&__toggler,
+		&__contacts-tel a,
+		&__contacts-email a,
+		&__contacts-wa .btn {
+			min-width: 36px;
+			width: 36px;
+			min-height: 36px;
+			height: 36px;
+			padding: 6px;
+		}
+		&__nav {
+			overflow-x: auto;
+			overflow-y: visible;
+		}
+		&__nav::-webkit-scrollbar {
+			display: none;
+		}
+		&__contacts {
+			display: flex;
+			align-items: center;
+		}
+		&__contacts-tel,
+		&__contacts-email {
+			margin-right: 5px;
+		}
+		&__contacts-tel a,
+		&__contacts-email a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 2px solid var(--blue-color);
+			border-radius: 50%;
+			background-color: var(--blue-color);
+		}
+		&__contacts-tel a:active,
+		&__contacts-email a:active {
+			color: #fff;
+			background-color: #0062cc;
+			border-color: #005cbf;
+		}
+		&__contacts-tel a:active:focus,
+		&__contacts-tel a:focus,
+		&__contacts-email a:active:focus,
+		&__contacts-email a:focus {
+			box-shadow: 0 0 0 0.2rem rgb(38 143 255 / 50%);
+		}
+		&__contacts-tel .icon,
+		&__contacts-email .icon,
+		&__contacts-wa .icon {
+			min-width: 20px;
+			width: 20px;
+			min-height: 20px;
+			height: 20px;
+		}
+		&__contacts-tel .icon-fill,
+		&__contacts-email .icon-fill {
+			fill: var(--white-color);
+		}
+		&__contacts-text {
+			display: none;
+		}
+	}
+	.navbar-panel {
+		&__col:first-of-type {
+			margin: 0;
+		}
+		&__col:last-of-type,
+		&__dropdown-link .icon {
+			display: none;
+		}
+		&__dropdown-link .text-content {
+			margin: 0;
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.navbar {
+		&__toggler {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 0;
+			border-radius: 0;
+			background-color: transparent;
+			appearance: none;
+		}
+		&__toggler span {
+			position: relative;
+			min-width: 100%;
+			width: 100%;
+			pointer-events: none;
+			user-select: none;
+		}
+		&__toggler.active span {
+			background-color: transparent;
+		}
+		&__toggler span,
+		&__toggler span::before,
+		&__toggler span::after {
+			min-height: 2px;
+			height: 2px;
+			border-radius: 2px;
+			background-color: var(--blue-color);
+		}
+		&__toggler span::before,
+		&__toggler span::after {
+			content: "";
+			position: absolute;
+			right: 0;
+			left: 0;
+			transition: 0.15s ease-in-out;
+		}
+		&__toggler:not(.active) span::before {
+			top: -7px;
+		}
+		&__toggler:not(.active) span::after {
+			top: 7px;
+		}
+		&__toggler.active span::before {
+			transform: rotate(45deg);
+		}
+		&__toggler.active span::after {
+			transform: rotate(-45deg);
+		}
+		&__nav-link {
+			padding: 12px 10px;
+		}
+		&__collapse {
+			order: 4;
+			width: 100%;
+			transition: max-height 0.15s ease-in-out,
+						padding 0.15s ease-in-out,
+						visibility 0.15s ease-in-out;
+		}
+		&__toggler:not(.active) ~ &__collapse {
+			max-height: 0;
+			opacity: 0;
+			visibility: hidden;
+		}
+		&__toggler.active ~ &__collapse {
+			padding-top: 20px;
+		}
+	}
+}
+@media (max-width: 1199.98px) {
+	.navbar {
+		&__contacts-tel,
+		&__contacts-email {
+			margin-right: 10px;
+		}
+		&__contacts-tel a {
+			font-size: 16px;
+		}
+	}
+	.navbar-panel {
+		&__col:first-of-type {
+			margin-right: 20px;
+		}
+	}
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+	.navbar {
+		&__toggler {
+			min-width: 48px;
+			width: 48px;
+			min-height: 48px;
+			height: 48px;
+			padding: 12px;
+		}
+	}
+}
+@media (min-width: 576px) and (max-width: 1199.98px) {
+	.navbar {
+		&__logo img {
+			min-width: 160px;
+			width: 160px;
+			min-height: 48px;
+			height: 48px;
+		}
+	}
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.navbar {
+		&__logo,
+		&__collapse {
+			margin-right: 20px;
+		}
+		&__nav-link {
+			padding: 15px 10px;
+		}
+		&__contacts {
+			min-width: 185px;
+		}
+	}
+	.navbar-panel {
+		&__col:first-of-type {
+			padding-left: 155px;
+		}
+		&__dropdown-item {
+			min-width: 280px;
+			width: 280px;
+		}
+		&__dropdown-submenu {
+			column-gap: 20px;
+		}
+	}
+}
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+	.navbar-panel {
+		&__col:first-of-type {
+			padding-left: 255px;
+		}
+		&__dropdown-submenu {
+			column-gap: 30px;
+		}
+	}
+}
+@media (min-width: 576px) {
+	.navbar {
+		&__nav {
+			justify-content: center;
+		}
+		&__contacts {
+			display: grid;
+			grid-template-rows: repeat(2, auto);
+			grid-template-columns: 1fr auto;
+		}
+		&__contacts-tel {
+			grid-row: 1 / 2;
+			grid-column: 1 / 2;
+		}
+		&__contacts-email {
+			grid-row: 2 / 3;
+			grid-column: 1 / 2;
+		}
+		&__contacts-wa {
+			grid-row: 1 / 3;
+			grid-column: 2 / 3;
+			display: flex;
+			align-items: center;
+		}
+		&__contacts-wa .btn {
+			min-width: 48px;
+			width: 48px;
+			min-height: 48px;
+			height: 48px;
+			padding: 12px;
+		}
+		&__contacts-tel .icon,
+		&__contacts-email .icon {
+			display: none;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.navbar-panel {
+		&__dropdown-submenu {
+			column-count: 2;
+		}
+	}
+}
 @media (min-width: 992px) {
-	.navbar-expand-lg .navbar__nav .navbar__nav-link {
-		padding-right: 4px;
-		padding-left: 4px;
+	.navbar {
+		&__toggler {
+			display: none;
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.navbar {
+		&__logo,
+		&__collapse {
+			margin-right: 30px;
+		}
+		&__logo img {
+			min-width: 200px;
+			width: 200px;
+			min-height: 54px;
+			height: 54px;
+		}
+		&__nav-link {
+			padding: 15px;
+		}
+		&__contacts {
+			min-width: 210px;
+		}
+		&__contacts-tel,
+		&__contacts-email {
+			margin-right: 20px;
+		}
+		&__contacts-tel a {
+			font-size: 18px;
+		}
+	}
+	.navbar-panel {
+		&__col:first-of-type {
+			margin-right: 30px;
+		}
+		&__dropdown-item {
+			min-width: 300px;
+			width: 300px;
+		}
+	}
+}
+@media (min-width: 1400px) {
+	.navbar-panel {
+		&__col:first-of-type {
+			margin-right: 30px;
+			padding-left: 340px;
+		}
+		&__dropdown-submenu {
+			column-gap: 75px;
+		}
 	}
 }

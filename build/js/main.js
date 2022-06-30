@@ -9,296 +9,367 @@ function application() {
     //this.myMap;
 }
 application.prototype.init = function () {
-    this.initHeaderNavbar();
-    this.initBtnDropdown();
-    this.initStrategicGoal();
+    /*this.initUpload();*/
+    this.initMapContacts();
+    this.setNavbarDropdownLinkBehavior();
+    this.setNavbarPanelBehavior();
+    this.initNavbarToggler();
     this.initSliders();
-    this.initTabs();
-    this.setFilterTabsBehavior();
 }
 
-// Init header navbar behavior
-application.prototype.initHeaderNavbar = function () {
-    //desktop
-    if (!$('html').hasClass('touch')) {
-        // Shows drop-menu when it's parent is hovered.
-        $('.js-drop-menu').parent().hover(function () {
-            $(this).find('>.js-drop-menu').stop();
-            $(this).find('>.js-drop-menu').slideDown(300);
-            $(this).addClass('active');
-        }, function () {
-            $(this).find('>.js-drop-menu').stop();
-            $(this).find('>.js-drop-menu').slideUp(150);
-            $(this).removeClass('active');
-        });
-        // Shows drop-submenu when it's parent is hovered.
-        $('.js-drop-submenu').parent().hover(function () {
-            // Вывод __drop-submenu одинаковой высоты с __drop-menu
-            var h = $(this).closest('.js-drop-menu').innerHeight();
-            $(this).find('>.js-drop-submenu').css({
-                'min-height': h,
-            });
 
-            $(this).find('>.js-drop-submenu').stop();
-            $(this).find('>.js-drop-submenu').animate({ width: "toggle" });
-            $(this).toggleClass('active');
+// Init upload
+application.prototype.initUpload = function () {
+    /*if ($(".js-strategic-goal-item").length) {*/
+
+// Select Upload-Area
+        const uploadArea = document.querySelector('.js-upload-area')
+
+// Select upload-file Area
+        const dropZoon = document.querySelector('#uploadFile');
+
+// Loading Text
+        const loadingText = document.querySelector('#loadingText');
+
+// Slect File Input
+        const fileInput = document.querySelector('#fileInput');
+
+// Select Preview Image
+        const previewImage = document.querySelector('#previewImage');
+
+// File-Details Area
+        const fileDetails = document.querySelector('#fileDetails');
+
+// Uploaded File
+        const uploadedFile = document.querySelector('#uploadedFile');
+
+// Uploaded File Info
+        const uploadedFileInfo = document.querySelector('#uploadedFileInfo');
+
+// Uploaded File  Name
+        const uploadedFileName = document.querySelector('.uploaded-file__name');
+
+// Uploaded File Icon
+        const uploadedFileIconText = document.querySelector('.uploaded-file__icon-text');
+
+// Uploaded File Counter
+        const uploadedFileCounter = document.querySelector('.uploaded-file__counter');
+
+// ToolTip Data
+        const toolTipData = document.querySelector('.upload-area__tooltip-data');
+
+// Images Types
+        const imagesTypes = [
+            "jpeg",
+            "png",
+            "svg",
+            "gif"
+        ];
+
+// Append Images Types Array Inisde Tooltip Data
+        toolTipData.innerHTML = [...imagesTypes].join(', .');
+
+// When (upload-file) has (dragover) Event
+        dropZoon.addEventListener('dragover', function (event) {
+            // Prevent Default Behavior
+            event.preventDefault();
+
+            // Add Class (upload-file--over) On (upload-file)
+            dropZoon.classList.add('upload-file--over');
         });
 
-        if (window.matchMedia("(max-width:1199px)").matches) {
-            $('.goods-menu__link').hover(function () {
-                $(this).addClass('active');
-            }, function () {
-                $(this).removeClass('active');
+// When (upload-file) has (dragleave) Event
+        dropZoon.addEventListener('dragleave', function (event) {
+            // Remove Class (upload-file--over) from (upload-file)
+            dropZoon.classList.remove('upload-file--over');
+        });
+
+// When (upload-file) has (drop) Event
+        dropZoon.addEventListener('drop', function (event) {
+            // Prevent Default Behavior
+            event.preventDefault();
+
+            // Remove Class (upload-file--over) from (upload-file)
+            dropZoon.classList.remove('upload-file--over');
+
+            // Select The Dropped File
+            const file = event.dataTransfer.files[0];
+
+            // Call Function uploadFile(), And Send To Her The Dropped File :)
+            uploadFile(file);
+        });
+
+// When (upload-file) has (click) Event
+        dropZoon.addEventListener('click', function (event) {
+            // Click The (fileInput)
+            fileInput.click();
+        });
+
+// When (fileInput) has (change) Event
+        fileInput.addEventListener('change', function (event) {
+            // Select The Chosen File
+            const file = event.target.files[0];
+
+            // Call Function uploadFile(), And Send To Her The Chosen File :)
+            uploadFile(file);
+        });
+
+// Upload File Function
+        function uploadFile(file) {
+            // FileReader()
+            const fileReader = new FileReader();
+            // File Type
+            const fileType = file.type;
+            // File Size
+            const fileSize = file.size;
+
+            // If File Is Passed from the (File Validation) Function
+            if (fileValidate(fileType, fileSize)) {
+                // Add Class (upload-file--Uploaded) on (upload-file)
+                dropZoon.classList.add('upload-file--Uploaded');
+
+                // Show Loading-text
+                loadingText.style.display = "block";
+                // Hide Preview Image
+                previewImage.style.display = 'none';
+
+                // Remove Class (uploaded-file--open) From (uploadedFile)
+                uploadedFile.classList.remove('uploaded-file--open');
+                // Remove Class (uploaded-file__info--active) from (uploadedFileInfo)
+                uploadedFileInfo.classList.remove('uploaded-file__info--active');
+
+                // After File Reader Loaded
+                fileReader.addEventListener('load', function () {
+                    // After Half Second
+                    setTimeout(function () {
+                        // Add Class (upload-area--open) On (uploadArea)
+                        uploadArea.classList.add('upload-area--open');
+
+                        // Hide Loading-text (please-wait) Element
+                        loadingText.style.display = "none";
+                        // Show Preview Image
+                        previewImage.style.display = 'block';
+
+                        // Add Class (file-details--open) On (fileDetails)
+                        fileDetails.classList.add('file-details--open');
+                        // Add Class (uploaded-file--open) On (uploadedFile)
+                        uploadedFile.classList.add('uploaded-file--open');
+                        // Add Class (uploaded-file__info--active) On (uploadedFileInfo)
+                        uploadedFileInfo.classList.add('uploaded-file__info--active');
+                    }, 500); // 0.5s
+
+                    // Add The (fileReader) Result Inside (previewImage) Source
+                    previewImage.setAttribute('src', fileReader.result);
+
+                    // Add File Name Inside Uploaded File Name
+                    uploadedFileName.innerHTML = file.name;
+
+                    // Call Function progressMove();
+                    progressMove();
+                });
+
+                // Read (file) As Data Url
+                fileReader.readAsDataURL(file);
+            } else { // Else
+
+                this; // (this) Represent The fileValidate(fileType, fileSize) Function
+
+            };
+        };
+
+// Progress Counter Increase Function
+        function progressMove() {
+            // Counter Start
+            let counter = 0;
+
+            // After 600ms
+            setTimeout(() => {
+                // Every 100ms
+                let counterIncrease = setInterval(() => {
+                    // If (counter) is equle 100
+                    if (counter === 100) {
+                        // Stop (Counter Increase)
+                        clearInterval(counterIncrease);
+                    } else { // Else
+                        // plus 10 on counter
+                        counter = counter + 10;
+                        // add (counter) vlaue inisde (uploadedFileCounter)
+                        uploadedFileCounter.innerHTML = `${counter}%`
+                    }
+                }, 100);
+            }, 600);
+        };
+
+
+// Simple File Validate Function
+        function fileValidate(fileType, fileSize) {
+            // File Type Validation
+            let isImage = imagesTypes.filter((type) => fileType.indexOf(`image/${type}`) !== -1);
+
+            // If The Uploaded File Type Is 'jpeg'
+            if (isImage[0] === 'jpeg') {
+                // Add Inisde (uploadedFileIconText) The (jpg) Value
+                uploadedFileIconText.innerHTML = 'jpg';
+            } else { // else
+                // Add Inisde (uploadedFileIconText) The Uploaded File Type
+                uploadedFileIconText.innerHTML = isImage[0];
+            };
+
+            // If The Uploaded File Is An Image
+            if (isImage.length !== 0) {
+                // Check, If File Size Is 2MB or Less
+                if (fileSize <= 2000000) { // 2MB :)
+                    return true;
+                } else { // Else File Size
+                    return alert('Please Your File Should be 2 Megabytes or Less');
+                };
+            } else { // Else File Type
+                return alert('Please make sure to upload An Image File Type');
+            };
+        };
+
+// :)
+    /*}*/
+}
+// Init contacts map
+application.prototype.initMapContacts = function () {
+    if($("#contacts_map").length) {
+        let coords = [55.709084,38.455242];
+
+        ymaps.ready(init);
+        function init(){
+            // Создание карты.
+            let myMap = new ymaps.Map("contacts_map", {
+                    // Координаты центра карты.
+                    // Порядок по умолчанию: «широта, долгота».
+                    center: coords,
+                    controls: [],
+                    zoom: 16,
+                }, {
+                    searchControlProvider: 'yandex#search'
+                }),
+
+            myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+                hintContent: 'Circom',
+                /*balloonContent: 'Circom'*/
+            }, {
+                iconLayout: 'default#image',
+                // Custom image for the placemark icon.
+                iconImageHref: '/build/img/placemark.svg',
+                // The size of the placemark.
+                iconImageSize: [24, 24],
+                iconImageOffset: [-5, -38]
             });
+            myMap.geoObjects.add(myPlacemark);
+            myMap.behaviors.disable('scrollZoom');
         }
     }
-    //mobile
-    else {
-        $('.header-bottom__menu .goods-menu__link').on('click', function (e) {
-            if ($(this).parent().hasClass('active')) return true;
-            e.preventDefault();
-
-            ///////////////
-            $('.header-bottom__menu .goods-menu__item.active').each(function (i, el) {
-                $(el).removeClass('active');
-                $(el).find('.js-drop-menu').slideUp(150);
-            });
-            $('.header-bottom__menu .goods-menu__drop-menu-item').each(function (i, el) {
-                $(el).removeClass('active');
-                $(el).find('.js-drop-submenu').hide();
-            });
-            ///////////////
-            $(this).parent().addClass('active');
-            $(this).parent().find('>.js-drop-menu').slideDown(300);
-        });
-
-        $('.header-bottom__menu .goods-menu__drop-menu-link').on('click', function (e) {
-            if ($(this).parent().hasClass('active')) return true;
-            if (!$(this).parent().find('.js-drop-submenu').length) return true;
-            e.preventDefault();
-
-            $('.header-bottom__menu .goods-menu__drop-menu-item').each(function (i, el) {
-                $(el).removeClass('active');
-                $(el).find('.js-drop-submenu').hide();
-            });
-
-            $(this).parent().addClass('active');
-
-            $(this).parent().find('.js-drop-submenu').animate({ width: "toggle" });
-        });
-
-        $(document).on('click', function (e) {
-            if (!$(e.target).closest('.header-bottom__menu').length) {
-                $('.header-bottom__menu .goods-menu__item').removeClass('active');
-                $('.header-bottom__menu').find('.js-drop-menu').slideUp(150);
-            }
-        });
-    }
 }
+// Set behavior to navbar dropdown (1st lvl)
+application.prototype.setNavbarDropdownLinkBehavior = function () {
+    if($(".js-navbar-link-dropdown").length) {
+        $(".js-navbar-link-dropdown").on("click", function () {
+            if($(this).closest(".navbar__nav-item").hasClass("active")) {
+                $(this).closest(".navbar__nav-item").removeClass("active");
+            }
+            else {
+                $(this).closest(".navbar__nav-item").addClass("active");
+            }
 
+            if($(this).closest(".navbar").siblings(".navbar-panel").hasClass("show")) {
+                $(this).closest(".navbar").siblings(".navbar-panel").removeClass("show");
+                $(this).closest(".navbar").siblings(".navbar-panel").slideUp(150);
 
-// Init ".btn-dropdown" behavior
-application.prototype.initBtnDropdown = function () {
-    if ($(".btn-dropdown").length) {
-        $(".btn-dropdown").on("click", function (e) {
-            if ($(".btn-dropdown").is(e.target) && $(".btn-dropdown").has(e.target).length === 0) {
-                if (!$(this).hasClass("btn-dropdown--open")) {
-                    $(".btn-dropdown").removeClass("btn-dropdown--open");
-                    $(this).addClass("btn-dropdown--open");
-
-                    $(".btn-dropdown .content-dropdown").removeClass("content-dropdown--open");
-                    $(this).find(".content-dropdown").addClass("content-dropdown--open");
-                    $(this).find(".content-dropdown").addClass("content-dropdown--transition");
-                    setTimeout(function () {
-                        $(".btn-dropdown .content-dropdown").removeClass("content-dropdown--transition");
-                    }, 150);
-                } else {
-                    $(this).removeClass("btn-dropdown--open");
-                    $(this).find(".content-dropdown").removeClass("content-dropdown--open");
-                }
+                $(".js-navbar-panel").find(".navbar-panel__dropdown-submenu").removeClass("active");
+                $(".js-navbar-panel").find(".navbar-panel__dropdown-submenu:first-of-type").addClass("active");
+            }
+            else {
+                $(this).closest(".navbar").siblings(".navbar-panel").addClass("show");
+                $(this).closest(".navbar").siblings(".navbar-panel").slideDown(150);
             }
         });
 
         $(document).on("click", function (e) {
-            if (!$(".btn-dropdown").is(e.target) && $(".btn-dropdown").has(e.target).length === 0
-                || $(".content-dropdown__results .content-dropdown__link").is(e.target)) {
-                $(".btn-dropdown").removeClass("btn-dropdown--open");
-                $(".btn-dropdown .content-dropdown").removeClass("content-dropdown--open");
+            if (!$(".js-navbar-toggler").is(e.target)
+                && !$(".js-navbar-link-dropdown").is(e.target)
+                && $(".js-navbar-link-dropdown").has(e.target).length === 0
+                && !$(".navbar-panel").is(e.target)
+                && $(".navbar-panel").has(e.target).length === 0)
+            {
+                $(".navbar__nav-item").removeClass("active");
+                $(".navbar-panel").removeClass("show");
+                $(".navbar-panel").slideUp(150);
+
+                $(".js-navbar-panel").find(".navbar-panel__dropdown-submenu").removeClass("active");
+                $(".js-navbar-panel").find(".navbar-panel__dropdown-submenu:first-of-type").addClass("active");
+
+                $(".js-navbar-toggler").removeClass("active");
             }
         });
     }
 }
-// Init "strategic-goal__header" behavior
-application.prototype.initStrategicGoal = function () {
-    if ($(".js-strategic-goal-item").length) {
-        /*$(".strategic-goal__collapse").hide();*/
-        $(".strategic-goal--dropdown .js-strategic-goal-item").on("click", function () {
-            if(!$(this).hasClass("active")) {
-                $(this).addClass("active");
-                $(this).find(".strategic-goal__collapse").slideDown(150);
-            } else {
+// Set behavior to navbar-panel
+application.prototype.setNavbarPanelBehavior = function () {
+    if($(".js-navbar-panel").length) {
+        $(".js-navbar-panel .navbar-panel__dropdown-link").on("mouseover", function () {
+            let currentEl = $(this).data("target");
+
+            $(".js-navbar-panel").find(".navbar-panel__dropdown-submenu").removeClass("active");
+            $(".js-navbar-panel").find(".navbar-panel__dropdown-submenu[data-id='" + currentEl + "']").addClass("active");
+        });
+    }
+}
+// Init navbar-toggler
+application.prototype.initNavbarToggler = function () {
+    if($(".js-navbar-toggler").length) {
+        $(".js-navbar-toggler").on("click", function () {
+            if($(this).hasClass("active")) {
                 $(this).removeClass("active");
-                $(this).find(".strategic-goal__collapse").slideUp(150);
+
+                $(".navbar__nav-item").removeClass("active");
+
+                $(".navbar-panel").removeClass("show");
+                $(".navbar-panel").slideUp(150);
+
+                $(".navbar-panel__dropdown-submenu").removeClass("active");
+                $(".navbar-panel__dropdown-submenu:first-of-type").addClass("active");
+            }
+            else {
+                $(this).addClass("active");
             }
         });
     }
 }
 // Init sliders
 application.prototype.initSliders = function () {
-    // Magazine slider
-    if ($(".js-magazine-slider").length) {
-        let magazineSliderSettings = {
-            slidesPerView: 4,
-            spaceBetween: 20,
-            navigation: {
-                nextEl: ".magazine .swiper-button-next",
-                prevEl: ".magazine .swiper-button-prev",
-            },
-            pagination: {
-                el: ".magazine .swiper-pagination",
-                clickable: true,
-                dynamicBullets: true,
-                dynamicMainBullets: 7,
-            },
-            breakpoints: {
-                /*768: {
-                    slidesPerView: 2,
-                },*/
-            }
-        };
-        new Swiper(".js-magazine-slider", magazineSliderSettings);
-    }
-
-    // Feedback slider
-    if ($(".js-feedback-slider").length) {
-        let feedbackSliderSettings = {
-            slidesPerView: 4,
-            spaceBetween: 20,
-            navigation: {
-                nextEl: ".feedback .swiper-button-next",
-                prevEl: ".feedback .swiper-button-prev",
-            },
-            pagination: {
-                el: ".feedback .swiper-pagination",
-                clickable: true,
-                dynamicBullets: true,
-                dynamicMainBullets: 3,
-            },
-        };
-        new Swiper(".js-feedback-slider", feedbackSliderSettings);
-    }
-
-    // Clients slider
-    if ($(".js-clients-slider").length) {
-        let clientsSliderSettings = {
-            allowTouchMove: false,
-            autoplay: {
-                delay: 0,
-                disableOnInteraction: false
-            },
-
-            freeMode: {
-                enabled: true,
-            },
+    // Equipment slider
+    if ($(".js-equipment-slider").length) {
+        var equipmentSliderSettings = {
+            autoHeight: true,
+            grabCursor: true,
             loop: true,
+            centeredSlides: true,
+            initialSlide: 2,
+            effect: "coverflow",
             slidesPerView: "auto",
-            spaceBetween: 20,
-            speed: 5000,
-        };
-        new Swiper(".js-clients-slider", clientsSliderSettings);
-    }
-
-    // Feedback thumbs slider
-    if ($(".js-awards-thumbs-slider").length) {
-        let awardsSliderThumbsSettings = {
-            slidesPerView: 3,
-            spaceBetween: 35,
-            watchSlidesProgress: true,
-        };
-        new Swiper(".js-awards-thumbs-slider", awardsSliderThumbsSettings);
-    }
-    // Feedback slider
-    if ($(".js-awards-slider").length) {
-        let awardsSliderSettings = {
-            slidesPerView: 1,
-            spaceBetween: 35,
-            effect: "fade",
-            /*thumbs: {
-                swiper: awardsSliderThumbsSettings,
-            },*/
+            coverflowEffect: {
+                scale: 1.03,
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 10,
+                initialSlide: 3,
+                slideShadows: false,
+            },
             navigation: {
-                nextEl: ".awards .swiper-button-next",
-                prevEl: ".awards .swiper-button-prev",
+                nextEl: ".equipment-slider .swiper-button-next",
+                prevEl: ".equipment-slider .swiper-button-prev",
             },
             pagination: {
-                el: ".awards-slider .swiper-pagination",
-                type: "custom",
-                renderCustom: function (swiper, current, total) {
-                    return ("" + current).slice(-2) + " из " + ("" + total).slice(-2);
-                }
-            },
-
-        };
-        new Swiper(".js-awards-slider", awardsSliderSettings);
-    }
-
-    /*let swiper = new Swiper(".js-awards-thumbs-slider", {
-        spaceBetween: 10,
-        slidesPerView: 4,
-        freeMode: true,
-        watchSlidesProgress: true,
-      });
-      let swiper2 = new Swiper(".js-awards-slider", {
-        spaceBetween: 10,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        thumbs: {
-          swiper: swiper,
-        },
-    });*/
-
-}
-// Init tabs
-application.prototype.initTabs = function () {
-    if ($(".tabs").length) {
-        // adding class "selected" to active tab
-        $(".tabs-heading__item").on("click", function () {
-            if (!$(this).find("input[type='checkbox']").prop("checked")) {
-                $(this).removeClass("selected");
-            } else if ($(this).find("input[type='checkbox']").prop("checked")) {
-                $(this).addClass("selected");
+                el: ".equipment-slider .swiper-pagination",
+                clickable: true,
             }
-        });
-
-        // show content of "selected" item
-        tabsContentBinding();
-        function tabsContentBinding() {
-            $(".tabs-heading__item").on("click", function () {
-                let currentSelected = $(this).data("target");
-                if (!$(this).find("input[type='checkbox']").prop("checked")) {
-                    $(this).closest(".tabs").find(".tab-content__section[data-id='" + currentSelected + "']").removeClass("active");
-                } else if ($(this).find("input[type='checkbox']").prop("checked")) {
-                    $(this).closest(".tabs").find(".tab-content__section[data-id='" + currentSelected + "']").addClass("active");
-                }
-            });
-        }
-    }
-}
-// Init filter tabs
-application.prototype.setFilterTabsBehavior = function () {
-    if ($(".page-search-result__filter").length) {
-        $(".page-search-result__filter .tabs-heading__item").on("click", function () {
-            $(".page-search-result__filter .tabs-heading__item").each(function () {
-                if ($(this).find("input[type='checkbox']").prop("checked")) {
-                    $(this).closest(".page-search-result__filter--default").removeClass("page-search-result__filter--default");
-                    return false;
-                } else {
-                    $(".page-search-result__filter").addClass("page-search-result__filter--default");
-                }
-
-            });
-        });
+        };
+        new Swiper(".js-equipment-slider", equipmentSliderSettings);
     }
 }
