@@ -64,6 +64,11 @@
     <div>
         <ol>
             <li><a href="/build/index.php" target="_blank">Главная</a></li>
+            <li><a href="/build/services-detail-woodworking.php" target="_blank">Услуги детальная - деревообработка</a></li>
+            <li><a href="/build/services-detail-metalworking.php" target="_blank">Услуги детальная - металлообработка</a></li>
+            <li><a href="/build/services-detail-metalworking-additional.php" target="_blank">Услуги детальная - металлообработка (доп услуги)</a></li>
+            <li><a href="/build/services-detail-painting.php" target="_blank">Услуги детальная - покраска</a></li>
+            <li><a href="/build/services-detail-maf.php" target="_blank">Услуги детальная - МАФ</a></li>
             <br>
 
         </ol>

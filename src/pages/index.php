@@ -153,7 +153,6 @@
     </div>
 </section>
 
-<!--test-->
 <section class="block-mb">
     <div class="container">
         <div class="row equipment">
