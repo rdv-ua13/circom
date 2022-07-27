@@ -1,21 +1,31 @@
-<div class="pagination">
-    <a href="javascript:;" class="site-bc-btn site-bc-btn-prev"> <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M7.2 0.799805L8.46 2.05981L3.42 7.09981H18V8.89981H3.42L8.46 13.9398L7.2 15.1998L3.8147e-06 7.99981L7.2 0.799805Z" fill="#06416A"/> </svg> </a>
-
-
-    <a href="javascript:;" class="site-bc-btn site-bc-btn-active">1</a>
-
-    <a href="javascript:;" class="site-bc-btn">2</a>
-
-    <a href="javascript:;" class="site-bc-btn">3</a>
-
-    <span href="javascript" class="site-bc-btn site-bc-btn-between">...</span>
-
-    <a href="javascript:;" class="site-bc-btn">4</a>
-
-    <a href="javascript:;" class="site-bc-btn">5</a>
-
-    <a href="javascript:;" class="site-bc-btn">6</a>
-
-
-    <a href="javascript:;" class="site-bc-btn site-bc-btn-next"><svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M10.8 0.799805L9.54 2.05981L14.58 7.09981H0V8.89981H14.58L9.54 13.9398L10.8 15.1998L18 7.99981L10.8 0.799805Z" fill="#06416A"/> </svg> </a>
-</div>
+<ul class="pagination" aria-label="page-navigation">
+    <li class="pagination__item">
+        <a class="pagination__btn pagination__nav-btn" href="javascript:;" aria-label="Previous">
+            <svg class="icon icon-stroke rotate-left">
+                <use href="/build/img/sprite.svg#arrow-right"></use>
+            </svg>
+        </a>
+    </li>
+    <li class="pagination__item">
+        <a class="pagination__btn" href="javascript:;"><span>1</span></a>
+    </li>
+    <li class="pagination__item">
+        <a class="pagination__btn" href="javascript:;"><span>2</span></a>
+    </li>
+    <li class="pagination__item">
+        <a class="pagination__btn" href="javascript:;"><span>3</span></a>
+    </li>
+    <li class="pagination__item">
+        <a class="pagination__btn active" href="javascript:;"><span>4</span></a>
+    </li>
+    <li class="pagination__item">
+        <a class="pagination__btn" href="javascript:;"><span>5</span></a>
+    </li>
+    <li class="pagination__item">
+        <a class="pagination__btn pagination__nav-btn" href="javascript:;" aria-label="Next">
+            <svg class="icon icon-stroke">
+                <use href="/build/img/sprite.svg#arrow-right"></use>
+            </svg>
+        </a>
+    </li>
+</ul>

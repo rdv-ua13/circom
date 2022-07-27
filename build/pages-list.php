@@ -55,9 +55,9 @@
             <img class="logo-icon" src="/build/img/logo.svg">
         </div>
         <div style="display: flex; flex-basis: 100%; align-items:center; padding-left: 15px; font-size: 24px;">
-            <span style="color: forestgreen; font-weight: 600;">1</span>
+            <span style="color: forestgreen; font-weight: 600;">6</span>
             &nbsp;/&nbsp;
-            <span style="font-size: 24px;">-- (всего страниц в макете)</span>
+            <span style="font-size: 24px;">13 (всего страниц в макете)</span>
         </div>
     </div>
 
@@ -70,7 +70,9 @@
             <li><a href="/build/services-detail-painting.php" target="_blank">Услуги детальная - покраска</a></li>
             <li><a href="/build/services-detail-maf.php" target="_blank">Услуги детальная - МАФ</a></li>
             <br>
-
+            <li><a href="/build/about.php" target="_blank">О компании</a></li>
+            <li><a href="/build/contacts.php" target="_blank">Контакты</a></li>
+            <li><a href="/build/equipment.php" target="_blank">Оборудование</a></li>
         </ol>
     </div>
     </body>

@@ -11,6 +11,7 @@ function application() {
 application.prototype.init = function () {
     /*this.initUpload();*/
     this.initMapContacts();
+    this.initMapContactsPage();
     this.setNavbarDropdownLinkBehavior();
     this.setNavbarPanelBehavior();
     this.initNavbarToggler();
@@ -240,6 +241,40 @@ application.prototype.initMapContacts = function () {
         function init(){
             // Создание карты.
             let myMap = new ymaps.Map("contacts_map", {
+                    // Координаты центра карты.
+                    // Порядок по умолчанию: «широта, долгота».
+                    center: coords,
+                    controls: [],
+                    zoom: 16,
+                }, {
+                    searchControlProvider: 'yandex#search'
+                }),
+
+            myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+                hintContent: 'Circom',
+                /*balloonContent: 'Circom'*/
+            }, {
+                iconLayout: 'default#image',
+                // Custom image for the placemark icon.
+                iconImageHref: '/build/img/placemark.svg',
+                // The size of the placemark.
+                iconImageSize: [24, 24],
+                iconImageOffset: [-5, -38]
+            });
+            myMap.geoObjects.add(myPlacemark);
+            myMap.behaviors.disable('scrollZoom');
+        }
+    }
+}
+// Init contacts-page-map
+application.prototype.initMapContactsPage = function () {
+    if($("#contacts_page_map").length) {
+        let coords = [55.709084,38.455242];
+
+        ymaps.ready(init);
+        function init(){
+            // Создание карты.
+            let myMap = new ymaps.Map("contacts_page_map", {
                     // Координаты центра карты.
                     // Порядок по умолчанию: «широта, долгота».
                     center: coords,

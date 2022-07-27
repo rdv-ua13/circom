@@ -1,7 +1,7 @@
 <?php include($_SERVER["DOCUMENT_ROOT"] . '/build/components/header.php'); ?>
 
 <section class="mb-3">
-	<div class="top-screen-inner woodworking" style="background-image: url('/build/img/services-woodworking.jpg');">
+	<div class="top-screen-inner" style="background-image: url('/build/img/topscreen-woodworking.jpg');">
 		<div class="container">
 			<div class="row">
 				<div class="col col-sm-8 col-md-6 col-xl-4">
@@ -23,8 +23,8 @@
 
 <section class="block-mb">
     <div class="container">
-        <div class="section-services">
-            <div class="section-services__item section-services__item--col-7">
+        <div class="section-services section-container">
+            <div class="section-container__col section-container__col-7">
                 <div class="section-services__view">
                     <img src="/build/img/section-services-img-1.png" alt="">
                 </div>
@@ -41,7 +41,7 @@
                     </a>
                 </div>
             </div>
-            <div class="section-services__item section-services__item--col-5">
+            <div class="section-container__col section-container__col-5">
                 <div class="section-services__view">
                     <img src="/build/img/section-services-img-2.jpeg" alt="">
                 </div>
@@ -58,7 +58,7 @@
                     </a>
                 </div>
             </div>
-            <div class="section-services__item section-services__item--col-4">
+            <div class="section-container__col section-container__col-4">
                 <div class="section-services__view">
                     <img src="/build/img/section-services-img-3.jpeg" alt="">
                 </div>
@@ -75,7 +75,7 @@
                     </a>
                 </div>
             </div>
-            <div class="section-services__item section-services__item--col-4">
+            <div class="section-container__col section-container__col-4">
                 <div class="section-services__view">
                     <img src="/build/img/section-services-img-4.jpeg" alt="">
                 </div>
@@ -92,7 +92,7 @@
                     </a>
                 </div>
             </div>
-            <div class="section-services__item section-services__item--col-4">
+            <div class="section-container__col section-container__col-4">
                 <div class="section-services__view">
                     <img src="/build/img/section-services-img-5.jpg" alt="">
                 </div>
