@@ -2,9 +2,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-12 col-md-6 col-xl-4 mb-4 mb-xl-0">
-                        <div class="h2 pre-footer__heading">
-                            Оставить заявку<br>
-                            на расчет проекта
+                        <div class="block-mb-small">
+                            <div class="h2 pre-footer__heading">
+                                Оставить заявку<br>
+                                на расчет проекта
+                            </div>
                         </div>
                         <form class="pre-footer__request" action="" method="">
                             <div class="field-wrapper">

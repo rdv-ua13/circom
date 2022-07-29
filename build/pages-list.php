@@ -55,7 +55,7 @@
             <img class="logo-icon" src="/build/img/logo.svg">
         </div>
         <div style="display: flex; flex-basis: 100%; align-items:center; padding-left: 15px; font-size: 24px;">
-            <span style="color: forestgreen; font-weight: 600;">6</span>
+            <span style="color: forestgreen; font-weight: 600;">9</span>
             &nbsp;/&nbsp;
             <span style="font-size: 24px;">13 (всего страниц в макете)</span>
         </div>
@@ -73,6 +73,9 @@
             <li><a href="/build/about.php" target="_blank">О компании</a></li>
             <li><a href="/build/contacts.php" target="_blank">Контакты</a></li>
             <li><a href="/build/equipment.php" target="_blank">Оборудование</a></li>
+
+            <li><a href="/build/equipment-detail.php" target="_blank">Оборудование - детальная</a></li>
+            <li><a href="/build/text-page.php" target="_blank">Текстовая страница</a></li>
         </ol>
     </div>
     </body>

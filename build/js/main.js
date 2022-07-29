@@ -16,7 +16,8 @@ application.prototype.init = function () {
     this.setNavbarPanelBehavior();
     this.initNavbarToggler();
     this.initSliders();
-}
+    this.initTabs();
+};
 
 
 // Init upload
@@ -231,7 +232,7 @@ application.prototype.initUpload = function () {
 
 // :)
     /*}*/
-}
+};
 // Init contacts map
 application.prototype.initMapContacts = function () {
     if($("#contacts_map").length) {
@@ -265,7 +266,7 @@ application.prototype.initMapContacts = function () {
             myMap.behaviors.disable('scrollZoom');
         }
     }
-}
+};
 // Init contacts-page-map
 application.prototype.initMapContactsPage = function () {
     if($("#contacts_page_map").length) {
@@ -299,7 +300,7 @@ application.prototype.initMapContactsPage = function () {
             myMap.behaviors.disable('scrollZoom');
         }
     }
-}
+};
 // Set behavior to navbar dropdown (1st lvl)
 application.prototype.setNavbarDropdownLinkBehavior = function () {
     if($(".js-navbar-link-dropdown").length) {
@@ -342,7 +343,7 @@ application.prototype.setNavbarDropdownLinkBehavior = function () {
             }
         });
     }
-}
+};
 // Set behavior to navbar-panel
 application.prototype.setNavbarPanelBehavior = function () {
     if($(".js-navbar-panel").length) {
@@ -353,7 +354,7 @@ application.prototype.setNavbarPanelBehavior = function () {
             $(".js-navbar-panel").find(".navbar-panel__dropdown-submenu[data-id='" + currentEl + "']").addClass("active");
         });
     }
-}
+};
 // Init navbar-toggler
 application.prototype.initNavbarToggler = function () {
     if($(".js-navbar-toggler").length) {
@@ -374,7 +375,7 @@ application.prototype.initNavbarToggler = function () {
             }
         });
     }
-}
+};
 // Init sliders
 application.prototype.initSliders = function () {
     // Equipment slider
@@ -407,4 +408,25 @@ application.prototype.initSliders = function () {
         };
         new Swiper(".js-equipment-slider", equipmentSliderSettings);
     }
-}
+};
+// Init tabs
+application.prototype.initTabs = function () {
+    if ($(".tabs").length) {
+        // adding class "selected" to active tab
+        $(".tabs-heading__item").on("click", function () {
+            $(this).closest(".tabs-heading").find(".tabs-heading__item").removeClass("selected");
+            $(this).addClass("selected");
+        });
+
+        // show content of "selected" item
+        tabsContentBinding();
+        function tabsContentBinding() {
+            var currentSelected = 1;
+            $(".tabs-heading__item").on("click", function () {
+                currentSelected = $(this).data("target");
+                $(this).closest(".tabs").find(".tab-content__section").removeClass("active");
+                $(this).closest(".tabs").find(".tab-content__section[data-id='" + currentSelected + "']").addClass("active");
+            });
+        }
+    }
+};

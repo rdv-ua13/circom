@@ -1102,6 +1102,7 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+.section-container,
 .section-pagination {
 	min-width: 100%;
 	width: 100%;
@@ -1261,5 +1262,11 @@
 			flex-direction: column;
 			justify-content: flex-start;
 		}
+	}
+}
+
+.calc-cost-request {
+	& .field-input {
+		background-color: var(--lightgray-color);
 	}
 }

@@ -1,6 +1,6 @@
 <?php include($_SERVER["DOCUMENT_ROOT"] . '/build/components/header.php'); ?>
 
-<section class="mb-3">
+<section>
 	<div class="top-screen-inner" style="background-image: url('/build/img/topscreen-woodworking.jpg');">
 		<div class="container">
 			<div class="row">
@@ -15,7 +15,7 @@
 	</div>
 </section>
 
-<section class="block-mb">
+<section class="block-mb-small">
 	<div class="container">
 		<?php include($_SERVER["DOCUMENT_ROOT"] . '/build/components/breadcrumbs.php'); ?>
 	</div>
