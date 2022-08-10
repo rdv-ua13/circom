@@ -9,7 +9,6 @@ function application() {
     //this.myMap;
 }
 application.prototype.init = function () {
-    /*this.initUpload();*/
     this.initMapContacts();
     this.initMapContactsPage();
     this.setNavbarDropdownLinkBehavior();
@@ -17,222 +16,9 @@ application.prototype.init = function () {
     this.initNavbarToggler();
     this.initSliders();
     this.initTabs();
+    this.initModalPopup();
 };
 
-
-// Init upload
-application.prototype.initUpload = function () {
-    /*if ($(".js-strategic-goal-item").length) {*/
-
-// Select Upload-Area
-        const uploadArea = document.querySelector('.js-upload-area')
-
-// Select upload-file Area
-        const dropZoon = document.querySelector('#uploadFile');
-
-// Loading Text
-        const loadingText = document.querySelector('#loadingText');
-
-// Slect File Input
-        const fileInput = document.querySelector('#fileInput');
-
-// Select Preview Image
-        const previewImage = document.querySelector('#previewImage');
-
-// File-Details Area
-        const fileDetails = document.querySelector('#fileDetails');
-
-// Uploaded File
-        const uploadedFile = document.querySelector('#uploadedFile');
-
-// Uploaded File Info
-        const uploadedFileInfo = document.querySelector('#uploadedFileInfo');
-
-// Uploaded File  Name
-        const uploadedFileName = document.querySelector('.uploaded-file__name');
-
-// Uploaded File Icon
-        const uploadedFileIconText = document.querySelector('.uploaded-file__icon-text');
-
-// Uploaded File Counter
-        const uploadedFileCounter = document.querySelector('.uploaded-file__counter');
-
-// ToolTip Data
-        const toolTipData = document.querySelector('.upload-area__tooltip-data');
-
-// Images Types
-        const imagesTypes = [
-            "jpeg",
-            "png",
-            "svg",
-            "gif"
-        ];
-
-// Append Images Types Array Inisde Tooltip Data
-        toolTipData.innerHTML = [...imagesTypes].join(', .');
-
-// When (upload-file) has (dragover) Event
-        dropZoon.addEventListener('dragover', function (event) {
-            // Prevent Default Behavior
-            event.preventDefault();
-
-            // Add Class (upload-file--over) On (upload-file)
-            dropZoon.classList.add('upload-file--over');
-        });
-
-// When (upload-file) has (dragleave) Event
-        dropZoon.addEventListener('dragleave', function (event) {
-            // Remove Class (upload-file--over) from (upload-file)
-            dropZoon.classList.remove('upload-file--over');
-        });
-
-// When (upload-file) has (drop) Event
-        dropZoon.addEventListener('drop', function (event) {
-            // Prevent Default Behavior
-            event.preventDefault();
-
-            // Remove Class (upload-file--over) from (upload-file)
-            dropZoon.classList.remove('upload-file--over');
-
-            // Select The Dropped File
-            const file = event.dataTransfer.files[0];
-
-            // Call Function uploadFile(), And Send To Her The Dropped File :)
-            uploadFile(file);
-        });
-
-// When (upload-file) has (click) Event
-        dropZoon.addEventListener('click', function (event) {
-            // Click The (fileInput)
-            fileInput.click();
-        });
-
-// When (fileInput) has (change) Event
-        fileInput.addEventListener('change', function (event) {
-            // Select The Chosen File
-            const file = event.target.files[0];
-
-            // Call Function uploadFile(), And Send To Her The Chosen File :)
-            uploadFile(file);
-        });
-
-// Upload File Function
-        function uploadFile(file) {
-            // FileReader()
-            const fileReader = new FileReader();
-            // File Type
-            const fileType = file.type;
-            // File Size
-            const fileSize = file.size;
-
-            // If File Is Passed from the (File Validation) Function
-            if (fileValidate(fileType, fileSize)) {
-                // Add Class (upload-file--Uploaded) on (upload-file)
-                dropZoon.classList.add('upload-file--Uploaded');
-
-                // Show Loading-text
-                loadingText.style.display = "block";
-                // Hide Preview Image
-                previewImage.style.display = 'none';
-
-                // Remove Class (uploaded-file--open) From (uploadedFile)
-                uploadedFile.classList.remove('uploaded-file--open');
-                // Remove Class (uploaded-file__info--active) from (uploadedFileInfo)
-                uploadedFileInfo.classList.remove('uploaded-file__info--active');
-
-                // After File Reader Loaded
-                fileReader.addEventListener('load', function () {
-                    // After Half Second
-                    setTimeout(function () {
-                        // Add Class (upload-area--open) On (uploadArea)
-                        uploadArea.classList.add('upload-area--open');
-
-                        // Hide Loading-text (please-wait) Element
-                        loadingText.style.display = "none";
-                        // Show Preview Image
-                        previewImage.style.display = 'block';
-
-                        // Add Class (file-details--open) On (fileDetails)
-                        fileDetails.classList.add('file-details--open');
-                        // Add Class (uploaded-file--open) On (uploadedFile)
-                        uploadedFile.classList.add('uploaded-file--open');
-                        // Add Class (uploaded-file__info--active) On (uploadedFileInfo)
-                        uploadedFileInfo.classList.add('uploaded-file__info--active');
-                    }, 500); // 0.5s
-
-                    // Add The (fileReader) Result Inside (previewImage) Source
-                    previewImage.setAttribute('src', fileReader.result);
-
-                    // Add File Name Inside Uploaded File Name
-                    uploadedFileName.innerHTML = file.name;
-
-                    // Call Function progressMove();
-                    progressMove();
-                });
-
-                // Read (file) As Data Url
-                fileReader.readAsDataURL(file);
-            } else { // Else
-
-                this; // (this) Represent The fileValidate(fileType, fileSize) Function
-
-            };
-        };
-
-// Progress Counter Increase Function
-        function progressMove() {
-            // Counter Start
-            let counter = 0;
-
-            // After 600ms
-            setTimeout(() => {
-                // Every 100ms
-                let counterIncrease = setInterval(() => {
-                    // If (counter) is equle 100
-                    if (counter === 100) {
-                        // Stop (Counter Increase)
-                        clearInterval(counterIncrease);
-                    } else { // Else
-                        // plus 10 on counter
-                        counter = counter + 10;
-                        // add (counter) vlaue inisde (uploadedFileCounter)
-                        uploadedFileCounter.innerHTML = `${counter}%`
-                    }
-                }, 100);
-            }, 600);
-        };
-
-
-// Simple File Validate Function
-        function fileValidate(fileType, fileSize) {
-            // File Type Validation
-            let isImage = imagesTypes.filter((type) => fileType.indexOf(`image/${type}`) !== -1);
-
-            // If The Uploaded File Type Is 'jpeg'
-            if (isImage[0] === 'jpeg') {
-                // Add Inisde (uploadedFileIconText) The (jpg) Value
-                uploadedFileIconText.innerHTML = 'jpg';
-            } else { // else
-                // Add Inisde (uploadedFileIconText) The Uploaded File Type
-                uploadedFileIconText.innerHTML = isImage[0];
-            };
-
-            // If The Uploaded File Is An Image
-            if (isImage.length !== 0) {
-                // Check, If File Size Is 2MB or Less
-                if (fileSize <= 2000000) { // 2MB :)
-                    return true;
-                } else { // Else File Size
-                    return alert('Please Your File Should be 2 Megabytes or Less');
-                };
-            } else { // Else File Type
-                return alert('Please make sure to upload An Image File Type');
-            };
-        };
-
-// :)
-    /*}*/
-};
 // Init contacts map
 application.prototype.initMapContacts = function () {
     if($("#contacts_map").length) {
@@ -380,7 +166,7 @@ application.prototype.initNavbarToggler = function () {
 application.prototype.initSliders = function () {
     // Equipment slider
     if ($(".js-equipment-slider").length) {
-        var equipmentSliderSettings = {
+        let equipmentSliderSettings = {
             autoHeight: true,
             grabCursor: true,
             loop: true,
@@ -408,6 +194,37 @@ application.prototype.initSliders = function () {
         };
         new Swiper(".js-equipment-slider", equipmentSliderSettings);
     }
+
+    // Tabs gallery slider
+    if ($(".tab-content__gallery").length) {
+        let tabGalleryThumbsSlider,
+            tabGallerySlider;
+
+        $(".tabs .tabs-heading__item").on("click", function () {
+            if ( $(".tab-content__gallery").closest(".tab-content__section").hasClass("active") ) {
+                if ( tabGallerySlider !== undefined ) tabGallerySlider.destroy( true, true );
+                return initTabGallerySlider();
+            }
+        });
+        const initTabGallerySlider = function() {
+            tabGalleryThumbsSlider = new Swiper(".js-tab-gallery-thumbs-slider", {
+                slidesPerView: "auto",
+                spaceBetween: 16,
+                direction: "vertical",
+            });
+            tabGallerySlider = new Swiper(".js-tab-gallery-slider", {
+                slidesPerView: 1,
+                effect: "fade",
+                thumbs: {
+                    swiper: tabGalleryThumbsSlider,
+                },
+                navigation: {
+                    nextEl: ".tab-gallery-thumbs-slider-wrapper .swiper-button-next",
+                    prevEl: ".tab-gallery-thumbs-slider-wrapper .swiper-button-prev",
+                }
+            });
+        }
+    }
 };
 // Init tabs
 application.prototype.initTabs = function () {
@@ -427,6 +244,71 @@ application.prototype.initTabs = function () {
                 $(this).closest(".tabs").find(".tab-content__section").removeClass("active");
                 $(this).closest(".tabs").find(".tab-content__section[data-id='" + currentSelected + "']").addClass("active");
             });
+        }
+    }
+};
+// Init modal popup
+application.prototype.initModalPopup = function () {
+    if ($("[data-toggle='modal']").length) {
+        let elemId = null,
+            portfolioGalleryThumbsSlider = null,
+            portfolioGallerySlider = null;
+
+        $(document).on("click", function (e) {
+            if ($(".modal-overlay").is(e.target) || $(".modal-close").is(e.target)) {
+                elemId = $(e.target).closest(".modal").attr("id");
+                e.stopPropagation();
+                $("body").removeClass("modal-is-visible compensate-for-scrollbar");
+                $("#" + elemId).removeClass("is-visible");
+                portfolioGalleryThumbsSlider.destroy( true, true );
+                portfolioGallerySlider.destroy( true, true );
+            }
+        });
+
+        $("[data-toggle='modal']").on("click", function(e) {
+            elemId = $(this).data("target");
+            e.preventDefault();
+            $(".modal").not("#" + elemId).removeClass("is-visible");
+            $("#" + elemId).addClass("is-visible");
+            $("body").addClass("modal-is-visible compensate-for-scrollbar");
+        });
+
+        // Portfolio gallery slider
+        if ($(".js-portfolio-item[data-toggle='modal']").length) {
+            $(".js-portfolio-item[data-toggle='modal']").on("click", function () {
+                elemId = $(this).data("target");
+                return initPortfolioGallerySlider(elemId);
+            });
+
+            let initPortfolioGallerySlider = function(id) {
+                portfolioGalleryThumbsSlider = new Swiper("#" + id + " .js-portfolio-modal-thumbs-slider", {
+                    slidesPerView: "auto",
+                    spaceBetween: 8,
+                    freeMode: true,
+                    watchSlidesProgress: true,
+                    breakpoints: {
+                        576: {
+                            spaceBetween: 16,
+                        },
+                        992: {
+                            spaceBetween: 0,
+                            direction: "vertical"
+                        }
+                    }
+                });
+                portfolioGallerySlider = new Swiper("#" + id + " .js-portfolio-modal-slider", {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    effect: "fade",
+                    thumbs: {
+                        swiper: portfolioGalleryThumbsSlider,
+                    },
+                    navigation: {
+                        nextEl: "#" + id + " .portfolio-modal__thumbs-slider-wrapper .swiper-button-next",
+                        prevEl: "#" + id + " .portfolio-modal__thumbs-slider-wrapper .swiper-button-prev",
+                    }
+                });
+            }
         }
     }
 };

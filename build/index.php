@@ -19,34 +19,41 @@
 <section class="block-mb">
     <div class="container">
         <div class="services">
-            <div class="services__item" style="background-image: url('/build/img/service-img1.jpg');">
-                <a class="services__item-link" href="javascript:;">
+            <div class="services__item-wrapper">
+                <div class="services__item" style="background-image: url('/build/img/service-img1.jpg');">
+                    <a class="services__item-link" href="javascript:;">
                 <span class="services__item-btn">
                     <span class="text-content">Металлообработка</span>
                 </span>
-                </a>
+                    </a>
+                </div>
             </div>
-            <div class="services__item" style="background-image: url('/build/img/service-img2.jpg');">
-                <a class="services__item-link" href="javascript:;">
+            <div class="services__item-wrapper">
+                <div class="services__item" style="background-image: url('/build/img/service-img2.jpg');">
+                    <a class="services__item-link" href="javascript:;">
                 <span class="services__item-btn">
                     <span class="text-content">Деревообработка</span>
                 </span>
-                </a>
+                    </a>
+                </div>
             </div>
-            <div class="services__item services__item--height-1/2" style="background-image: url('/build/img/service-img3.jpg');">
-                <a class="services__item-link" href="javascript:;">
+            <div class="services__item-wrapper">
+                <div class="services__item services__item--height-1/2" style="background-image: url('/build/img/service-img3.jpg');">
+                    <a class="services__item-link" href="javascript:;">
                 <span class="services__item-btn">
                     <span class="text-content">Покраска</span>
                 </span>
-                </a>
-            </div>
-            <div class="services__item services__item--height-1/2" style="background-image: url('/build/img/service-img4.jpg');">
-                <a class="services__item-link" href="javascript:;">
+                    </a>
+                </div>
+                <div class="services__item services__item--height-1/2" style="background-image: url('/build/img/service-img4.jpg');">
+                    <a class="services__item-link" href="javascript:;">
                 <span class="services__item-btn">
                     <span class="text-content">Разработка МАФ</span>
                 </span>
-                </a>
+                    </a>
+                </div>
             </div>
+
         </div>
     </div>
 </section>

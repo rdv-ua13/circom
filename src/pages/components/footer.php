@@ -49,55 +49,11 @@
                                     <div class="file-upload__text">Прикрепить файл</div>
                                 </div>
 
-                                <button class="btn btn-primary" type="submit">
-                                    <span class="text-content">Отправить заявку</span>
-                                </button>
-
-								<?/*
-                                <!-- Upload Area -->
-                                <div id="prefooterUploadArea" class="upload-area js-upload-area">
-                                    <!-- Header -->
-                                    <strong class="upload-area__tooltip">
-                                        Like
-                                        <span class="upload-area__tooltip-data"></span> <!-- Data Will be Comes From Js -->
-                                    </strong>
-                                    <!-- End Header -->
-
-                                    <!-- Drop Zone -->
-                                    <div id="uploadFile" class="upload-area__upload-file upload-file upload-area__tooltip">
-                                        <span class="upload-area__tooltip-data"></span> <!-- Data Will be Comes From Js -->
-
-                                        <span class="upload-file__icon">
-                                          <i class='bx bxs-file-image'></i>
-                                        </span>
-                                        <p class="upload-file__paragraph">Drop your file here or Click to browse</p>
-                                        <span id="loadingText" class="upload-file__loading-text">Please Wait</span>
-                                        <img src="" alt="Preview Image" id="previewImage" class="upload-file__preview-image" draggable="false">
-                                        <input type="file" id="fileInput" class="upload-file__file-input" accept="image/*">
-                                    </div>
-                                    <!-- End Drop Zone -->
-
-                                    <!-- File Details -->
-                                    <div id="fileDetails" class="upload-area__file-details file-details">
-                                        <h3 class="file-details__title">Uploaded File</h3>
-
-                                        <div id="uploadedFile" class="uploaded-file">
-                                            <div class="uploaded-file__icon-container">
-                                                <i class='bx bxs-file-blank uploaded-file__icon'></i>
-                                                <span class="uploaded-file__icon-text"></span> <!-- Data Will be Comes From Js -->
-                                            </div>
-
-                                            <div id="uploadedFileInfo" class="uploaded-file__info">
-                                                <span class="uploaded-file__name">Proejct 1</span>
-                                                <span class="uploaded-file__counter">0%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End File Details -->
+                                <div class="pre-footer__request-btn">
+                                    <button class="btn btn-primary" type="submit">
+                                        <span class="text-content">Отправить заявку</span>
+                                    </button>
                                 </div>
-                                <!-- End Upload Area -->
-								*/?>
-
                             </div>
 
                         </form>
@@ -198,6 +154,8 @@
             </div>
         </div>
     </footer>
+
+    <?php include($_SERVER["DOCUMENT_ROOT"] . '/build/components/modals.php'); ?>
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript"></script>
     <script src="/build/js/libs.min.js"></script>

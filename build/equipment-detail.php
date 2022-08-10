@@ -37,7 +37,7 @@
                 <div class="section-container__col section-container__col-7">
                     <div class="block-mb-small">
 
-                        <div class="tabs course-work-tabs">
+                        <div class="tabs">
                             <div class="tabs-heading">
                                 <div class="tabs-heading__list">
                                     <label class="tabs-heading__item selected" data-target="1">
@@ -156,7 +156,54 @@
                                     <div class="tab-content__body">
                                         <div class="tab-content__item">
 
-                                            tab 3
+                                            <div class="tab-content__gallery">
+                                                <div class="tab-gallery-thumbs-slider-wrapper">
+                                                    <div class="swiper-container tab-gallery-thumbs-slider js-tab-gallery-thumbs-slider">
+                                                        <div class="swiper-wrapper">
+                                                            <div class="swiper-slide">
+                                                                <img src="/build/img/tabs-slider-img-1.jpg" alt="">
+                                                            </div>
+                                                            <div class="swiper-slide">
+                                                                <img src="/build/img/tabs-slider-img-2.jpg" alt="">
+                                                            </div>
+                                                            <div class="swiper-slide">
+                                                                <img src="/build/img/tabs-slider-img-1.jpg" alt="">
+                                                            </div>
+                                                            <div class="swiper-slide">
+                                                                <img src="/build/img/tabs-slider-img-2.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-navigation">
+                                                        <div class="swiper-button-prev">
+                                                            <svg class="icon icon-stroke rotate-top">
+                                                                <use href="/build/img/sprite.svg#arrow-right"></use>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="swiper-button-next">
+                                                            <svg class="icon icon-stroke rotate-bottom">
+                                                                <use href="/build/img/sprite.svg#arrow-right"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-container tab-gallery-slider js-tab-gallery-slider">
+                                                    <div class="swiper-wrapper">
+                                                        <div class="swiper-slide">
+                                                            <img src="/build/img/tabs-slider-img-1.jpg" alt="">
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <img src="/build/img/tabs-slider-img-2.jpg" alt="">
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <img src="/build/img/tabs-slider-img-1.jpg" alt="">
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <img src="/build/img/tabs-slider-img-2.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -165,7 +212,18 @@
                                     <div class="tab-content__body">
                                         <div class="tab-content__item">
 
-                                            tab 4
+                                            <div class="tab-content__video">
+                                                <iframe id="yt_video"
+                                                        class="yt-video"
+                                                        width="560"
+                                                        height="315"
+                                                        src="https://www.youtube.com/embed/WO2b03Zdu4Q"
+                                                        title="YouTube video player"
+                                                        frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen
+                                                ></iframe>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -207,13 +265,13 @@
                                     </div>
                                     <div class="field-wrapper flex-wrap justify-content-between align-items-start">
                                         <div class="agreement-msg">Нажимая кнопку «Отправить», я даю согласие на обработку персональных данных.</div>
-                                        <div class="section-container">
-                                            <div class="section-container__col section-container__col-6">
+                                        <div class="field-wrapper__btn-wrapper">
+                                            <div class="field-wrapper__btn field-wrapper__btn-col-6">
                                                 <button class="btn btn-primary w-100" type="submit">
-                                                    <span class="text-content">Отправить заявку</span>
+                                                    Отправить заявку
                                                 </button>
                                             </div>
-                                            <div class="section-container__col section-container__col-6">
+                                            <div class="field-wrapper__btn field-wrapper__btn-col-6">
                                                 <button class="btn btn-gray w-100" type="button">
                                                     <span class="text-content">Позвонить</span>
                                                 </button>
